@@ -33,7 +33,7 @@ public class StudentServiceTest {
 
         StudentCreateRequest req = new StudentCreateRequest();
         req.setFullName("New User");
-        req.setEmail("duplicate@example.com");
+        req.setEmail("duplicated@example.com");
         req.setBirthDate(LocalDate.of(2001,12,1));
 
         assertThatThrownBy(() -> service.create(req)).isInstanceOf(ConflictException.class);
