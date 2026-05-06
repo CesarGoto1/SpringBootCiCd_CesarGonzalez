@@ -23,6 +23,6 @@ public class StudentRepositoryTest{
 
         var result = studentRepository.findByEmail("test@example.com");
         assertThat(result).isPresent();
-        assertThat(result.get().getFullName()).equals("Test User");
+        assertThat(result.get().getFullName()).isEqualTo("Test User");
     }
 }
