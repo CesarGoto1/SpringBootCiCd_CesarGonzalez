@@ -19,9 +19,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()) // Desactivar CSRF para APIs
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() // Rutas públicas (Login)
+                        .requestMatchers("/h2-console/**").permitAll() // Consola de H2 (AÑADIDO)
                         .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()                // Todo lo demás requiere Token
                 )
+                .headers(headers -> headers.frameOptions(frame -> frame.disable())) // Necesario para la consola de H2 (AÑADIDO)
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
