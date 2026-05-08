@@ -28,4 +28,5 @@ EXPOSE 8085
 
 # Ejecutar la aplicación
 # Usamos sh -c para que la variable de entorno PORT de Render sea expandida correctamente
-ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8085} -jar app.jar"]
+# Activamos el perfil 'render' para usar H2
+ENTRYPOINT ["sh", "-c", "java -Dspring.profiles.active=render -Dserver.port=${PORT:-8085} -jar app.jar"]
